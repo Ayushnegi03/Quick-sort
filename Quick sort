@@ -1,0 +1,39 @@
+//Quick sort
+function quick_Sort(origArr)
+{
+	if (origArr.length <= 1) 
+  { 
+		return origArr;
+	} 
+  else 
+  {
+		var left = [];
+		var right = [];
+		var newArr = [];
+		var pivot = origArr.pop();
+		var length = origArr.length;
+		for (var i = 0; i < length; i++) 
+    {
+			if (origArr[i] <= pivot)
+      {
+				left.push(origArr[i]);
+			} 
+      else
+      {
+				right.push(origArr[i]);
+			}
+		}
+		return newArr.concat(quick_Sort(left), pivot, quick_Sort(right));
+	}
+}
+var myArr = [-2,3, 0, 2, 5, -1, 4, 6 ,1 , 6,-3];
+console.log("Original array: ");
+console.log(myArr);
+var sortedArr = quick_Sort(myArr);
+console.log("Sorted array: "); 
+console.log(sortedArr);
+//Output-
+//Original array: 
+//[ -2, 3, 0, 2, 5, -1, 4, 6, 1, 6, -3 ]
+//Sorted array:
+//[ -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 6 ]
