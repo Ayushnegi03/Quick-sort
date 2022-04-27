@@ -1,0 +1,58 @@
+//Quick sort
+//Quicksort is the widely used sorting algorithm 
+//that makes n log n comparisons in average case for sorting an array of n elements.
+//It is a faster and highly efficient sorting algorithm.
+#include <iostream>
+using namespace std;
+int partition (int Arr[], int start, int end)  
+{  
+    int pivot = Arr[end]; // pivot element  
+    int i = (start - 1);  
+  
+    for (int j = start; j <= end - 1; j++)  
+    {  
+        if (Arr[j] < pivot)  
+        {  
+            i++; 
+            int t = Arr[i];  
+            Arr[i] = Arr[j];  
+            Arr[j] = t;  
+        }  
+    }  
+    int t = Arr[i+1];  
+    Arr[i+1] = Arr[end];  
+    Arr[end] = t;  
+    return (i + 1);  
+}  
+ 
+void Quick(int Arr[], int start, int end)  
+{  
+    if (start < end)  
+    {  
+        int p = partition(Arr, start, end);  
+        Quick(Arr, start, p - 1);  
+        Quick(Arr, p + 1, end);  
+    }  
+}  
+void PrintArr(int Arr[], int n)  
+{  
+    int i;  
+    for (i = 0; i < n; i++)  
+        cout<< Arr[i]<<"\t";  
+}  
+int main()  
+{  
+    int Arr[] = { 24, -4, 7,-1, 9, 29, 14 };  
+    int n = sizeof(Arr) / sizeof(Arr[0]);  
+    cout<<"Before sorting array elements: \n";  
+    PrintArr(Arr, n);  
+    Quick(Arr, 0, n - 1);  
+    cout<<"\nAfter sorting array elements: \n";    
+    PrintArr(Arr, n);  
+    return 0;  
+}  
+//Output-
+//Before sorting array elements:
+//24   -4   7  -1   9   29   14
+//After sorting array elements:
+//-4   -1   7   9   14   24   29
