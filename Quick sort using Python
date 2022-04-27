@@ -1,0 +1,27 @@
+# Quick Sort 
+def Partition(Array, low, high):
+  Pivot = Array[high] 
+  i = low - 1
+  for j in range(low, high):
+    if Array[j] <= Pivot:
+      i = i + 1
+      (Array[i], Array[j]) = (Array[j], Array[i])
+  (Array[i + 1], Array[high]) = (Array[high], Array[i + 1])
+  return i + 1
+def QuickSort(Array, low, high):
+  if low < high:
+    pi = Partition(Array, low, high)
+    QuickSort(Array, low, pi - 1)
+    QuickSort(Array, pi + 1, high)
+data = [-3,-2,-10,10,8, 7, 2, 1, 0, 9, 6]
+print("Unsorted Array")
+print(data)
+size = len(data)
+QuickSort(data, 0, size - 1)
+print('Sorted Array in Ascending Order:')
+print(data)
+#Output-
+#Unsorted Array
+#[-3, -2, -10, 10, 8, 7, 2, 1, 0, 9, 6]
+#Sorted Array in Ascending Order:
+#[-10, -3, -2, 0, 1, 2, 6, 7, 8, 9, 10]
